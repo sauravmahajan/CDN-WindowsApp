@@ -1,0 +1,1 @@
+This app works on the CDN server developed by IITD combined with the Mserver
