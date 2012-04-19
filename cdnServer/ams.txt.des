@@ -1,0 +1,31 @@
+import java.util.*;
+import java.util.*;
+import java.io.*;
+
+public class all_possible_substrings {
+
+    static HashSet <String> ans=new HashSet();
+
+    public static void main(String[] args) throws Exception {
+
+        BufferedReader temp = new BufferedReader(new InputStreamReader(System.in));
+        String s = temp.readLine();
+        all_subs(s);
+
+    }
+
+    public static void all_subs(String s) {
+        for (int i=0;i<s.length();i++)
+            for (int j=i+1;j<=s.length();j++){
+                ans.add(s.substring(i,j));
+            }
+    String [] ans_temp=new String[ans.size()];
+    ans.toArray(ans_temp);
+    Arrays.sort(ans_temp);
+    int pp=0;
+    while(pp<ans_temp.length){
+        System.out.println(ans_temp[pp]);
+        pp++;
+    }
+    }
+}
