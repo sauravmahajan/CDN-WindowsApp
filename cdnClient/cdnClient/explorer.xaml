@@ -35,6 +35,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="70" />
                 <RowDefinition Height="70" />
+                <RowDefinition Height="397*" />
             </Grid.RowDefinitions>
             
             <TextBlock Grid.Row="0" Height="30" HorizontalAlignment="Left" Margin="169,6,0,0" Name="textBlock2" Text="Downloaded Videos" VerticalAlignment="Top" />
@@ -140,7 +141,9 @@
                     Content="refresh" x:Name="refresh"
                     Click="refresh_Click" Margin="164,0,161,0" Grid.Column="1" />
             </Grid>
-      </Grid>
+            <Button Content="Upload" Height="72" HorizontalAlignment="Left" Margin="292,74,0,0" Name="button3" VerticalAlignment="Top" Width="158" Grid.Row="6" Click="button3_Click" />
+            <TextBox FontSize="{StaticResource PhoneFontSizeNormal}" Height="70" HorizontalAlignment="Left" Margin="9,74,0,0" Name="RemoteUpload" VerticalAlignment="Top" Width="277" Grid.Row="6" />
+        </Grid>
 </Grid>
     <!--Sample code showing usage of ApplicationBar-->
     <!--<phone:PhoneApplicationPage.ApplicationBar>

@@ -140,9 +140,9 @@ namespace cdnClient
                 MessageBox.Show("Please enter a host name");
                 //txtRemoteHost.Text = "10.22.254.228";
                 //txtRemoteHost.Text = "144.16.141.190";
-                txtRemoteHost.Text = "10.148.0.153";
+                //txtRemoteHost.Text = "10.148.0.153";
                 //txtRemoteHost.Text = "10.193.1.155";
-                //txtRemoteHost.Text = "192.168.1.10";
+                txtRemoteHost.Text = "192.168.43.147";
                 return false;
             }
 

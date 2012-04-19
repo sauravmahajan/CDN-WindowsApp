@@ -38,9 +38,9 @@ using System.Windows.Media.Imaging;
 
 namespace cdnClient
 {
-    public partial class file_info : PhoneApplicationPage
+    public partial class add_comment : PhoneApplicationPage
     {
-        public file_info()
+        public add_comment()
         {
             InitializeComponent();
         }
@@ -51,9 +51,8 @@ namespace cdnClient
 
             string newparameter = this.NavigationContext.QueryString["parameter"];
             PageTitle.Text = newparameter;
-            textBlock1.Text = newparameter;
-            textRead.Text = "";
-            String newparameter_des = newparameter + ".des";
+            //textBlock1.Text = newparameter;
+            String newparameter_des = newparameter + ".comment";
             IsolatedStorageFile myStore = IsolatedStorageFile.GetUserStoreForApplication();
 
             try
@@ -79,47 +78,6 @@ namespace cdnClient
                 // Handle the case when the user attempts to click the Read button first.
                 textRead.Text = "Need to create directory and the file first.";
             }
-        }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            String parameter = textBlock1.Text;
-            if (parameter.Contains(".txt"))
-            {
-                NavigationService.Navigate(new Uri(string.Format("/text.xaml?parameter={0}", parameter), UriKind.Relative));
-            }
-            else
-            {
-                if (parameter.Contains(".wmv"))
-                {
-                    MediaPlayerLauncher mediaPlayerLauncher = new MediaPlayerLauncher();
-                    mediaPlayerLauncher.Media = new Uri("MyFolder\\" + parameter, UriKind.Relative);
-                    //replace "gags" with your file path.
-                    mediaPlayerLauncher.Location = MediaLocationType.Data;
-                    mediaPlayerLauncher.Controls = MediaPlaybackControls.Pause | MediaPlaybackControls.Stop | MediaPlaybackControls.All;
-                    mediaPlayerLauncher.Orientation = MediaPlayerOrientation.Landscape;
-                    mediaPlayerLauncher.Show();
-                }
-                else
-                {
-                    NavigationService.Navigate(new Uri(string.Format("/video_image.xaml?parameter={0}", parameter), UriKind.Relative));
-                }
-            }
-        }
-
-        private void button2_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            String parameter = textBlock1.Text;
-            NavigationService.Navigate(new Uri(string.Format("/add_comment.xaml?parameter={0}", parameter), UriKind.Relative));
-            
-        }
-
-        private void button3_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            String parameter = textBlock1.Text;
-            NavigationService.Navigate(new Uri(string.Format("/add_comment_new.xaml?parameter={0}", parameter), UriKind.Relative));
-
-
         }
     }
 }

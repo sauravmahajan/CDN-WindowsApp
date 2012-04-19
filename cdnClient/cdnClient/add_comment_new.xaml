@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="cdnClient.file_info"
+    x:Class="cdnClient.add_comment_new"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -10,7 +10,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" shell:SystemTray.IsVisible="True" d:DesignHeight="768" d:DesignWidth="480">
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -26,15 +27,10 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,130">
-        <ScrollViewer>
-            <TextBlock x:Name="textRead" Text =" " TextWrapping="Wrap" />
-        </ScrollViewer>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <TextBox Height="72" HorizontalAlignment="Left" Margin="12,253,0,0" Name="textBox1" Text="comment...." VerticalAlignment="Top" Width="460" />
+            <Button Content="Add Comment" Height="72" HorizontalAlignment="Left" Margin="111,357,0,0" Name="button1" VerticalAlignment="Top" Width="237" Click="button1_Click" />
         </Grid>
-        <Button Content="View" Height="72" HorizontalAlignment="Left" Margin="113,480,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" Grid.Row="1" />
-        <TextBlock Height="30" HorizontalAlignment="Left" Margin="24,504,0,0" Name="textBlock1" Text="TextBlock" VerticalAlignment="Top" Grid.Row="1" />
-        <Button Content="Comments" Grid.Row="1" Height="72" HorizontalAlignment="Right" Margin="0,480,12,0" Name="button2" VerticalAlignment="Top" Width="189" Click="button2_Click" />
-        <Button Content="Add comment" Grid.Row="1" Height="72" HorizontalAlignment="Left" Margin="113,535,0,0" Name="button3" VerticalAlignment="Top" Width="232" Click="button3_Click" />
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->

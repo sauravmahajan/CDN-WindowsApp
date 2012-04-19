@@ -24,10 +24,10 @@ namespace cdnClient
 
         // Define a timeout in milliseconds for each asynchronous call. If a response is not received within this 
         // timeout period, the call is aborted.
-        const int TIMEOUT_MILLISECONDS = 5000;
+        const int TIMEOUT_MILLISECONDS = 500000;
 
         // The maximum size of the data buffer to use with the asynchronous socket methods
-        const int MAX_BUFFER_SIZE = 2048;
+        const int MAX_BUFFER_SIZE = 2048*8;
 
         /// <summary>
         /// Attempt a TCP socket connection to the given host over the given port
@@ -150,7 +150,13 @@ namespace cdnClient
                     {
                         // Retrieve the data from the buffer
                         response = Encoding.UTF8.GetString(e.Buffer, e.Offset, e.BytesTransferred);
+                        String responseex = response;
                         response = response.Trim('\0');
+                        if (response.Contains(responseex))
+                        {
+                            String ip = "fucked";
+                            ip = "done";
+                        }
                     }
                     else
                     {

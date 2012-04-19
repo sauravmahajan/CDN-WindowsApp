@@ -234,6 +234,7 @@ namespace cdnClient
 
             //TODO: 
             download(newToDoTextBox.Text+".des");
+            download(newToDoTextBox.Text + ".comment");
             // Start the thread
             oThread.Start();
 
@@ -326,6 +327,40 @@ namespace cdnClient
             // Execute the query and place the results into a collection.
             ToReallyDoItems = new ObservableCollection<ToDoItem>(toReallyDoItemsInDB);
 
+        }
+
+        private void button3_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            // Obtain a virtual store for the application.
+            IsolatedStorageFile myStore = IsolatedStorageFile.GetUserStoreForApplication();
+
+            try
+            {
+                // Specify the file path and options.
+                GlobalVar.client.Send("" + 2 + "\n");
+                GlobalVar.client.Send(RemoteUpload.Text + "\n");
+                using (var isoFileStream = new IsolatedStorageFileStream("MyFolder\\" + RemoteUpload.Text, FileMode.Open, myStore))
+                {
+                    // Read the data.
+                    using (var isoFileReader = new StreamReader(isoFileStream))
+                    {
+                        int temp_send = isoFileStream.ReadByte();
+                        while (temp_send != -1)
+                        {
+                            GlobalVar.client.Send(temp_send + "\n");
+                            temp_send = isoFileStream.ReadByte();
+                        }
+                        GlobalVar.client.Send("null" + "\n");
+                    }
+                }
+                // GlobalVar.client.Send("-1"+ "\n");
+
+            }
+            catch
+            {
+                // Handle the case when the user attempts to click the Read button first.
+                //txtRead.Text = "Need to create directory and the file first.";
+            }
         }
     }
     public class ToDoDataContext : DataContext

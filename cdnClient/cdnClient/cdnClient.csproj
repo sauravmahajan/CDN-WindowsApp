@@ -59,6 +59,12 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="add_comment.xaml.cs">
+      <DependentUpon>add_comment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="add_comment_new.xaml.cs">
+      <DependentUpon>add_comment_new.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -94,6 +100,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="add_comment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="add_comment_new.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="file_info.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
