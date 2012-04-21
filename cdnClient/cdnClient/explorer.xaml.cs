@@ -30,7 +30,6 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using System.IO;
 using System.IO.IsolatedStorage;
 using Microsoft.Phone.Tasks;
 using System.Windows.Controls;
@@ -494,40 +493,105 @@ namespace cdnClient
 
             // Create a new folder and call it "MyFolder".
             myStore.CreateDirectory("MyFolder");
-            string temp = GlobalVar.client.Receive();
-            // Specify the file path and options.
             using (var isoFileStream = new IsolatedStorageFileStream("MyFolder\\" + name, FileMode.OpenOrCreate, myStore))
             {
-                //Write the data
-                using (var isoFileWriter = new StreamWriter(isoFileStream))
+                try
                 {
-                    bool done = false;
-                    while (temp.CompareTo("null") != 0)
-                    {
-                        string[] all = temp.Split('\n');
-                        for (int i = 0; i < all.Length; i++)
-                        {
-                            if (all[i].CompareTo("null") != 0)
-                            {
-                                if (all[i].CompareTo("") != 0)
-                                    isoFileStream.WriteByte(Convert.ToByte(all[i]));
-                            }
-                            else
-                            {
-                                done = true;
-                                break;
-                            }
-                        }
-                        if (done) break;
+                    string temp = GlobalVar.client.Receive();
+                    // Specify the file path and options.
 
-                        temp = GlobalVar.client.Receive();
+                    //Write the data
+                    using (var isoFileWriter = new StreamWriter(isoFileStream))
+                    {
+                        bool done = false;
+                        while (temp.CompareTo("null") != 0)
+                        {
+                            string[] all = temp.Split('\n');
+                            for (int i = 0; i < all.Length; i++)
+                            {
+                                if (all[i].CompareTo("null") != 0)
+                                {
+                                    if (all[i].CompareTo("") != 0)
+                                        isoFileStream.WriteByte(Convert.ToByte(all[i]));
+                                }
+                                else
+                                {
+                                    done = true;
+                                    break;
+                                }
+                            }
+                            if (done) break;
+
+                            temp = GlobalVar.client.Receive();
+                        }
                     }
+                }
+                catch(Exception e){
+                    
+                    GlobalVar.resume = true;
+
+                    // redundant code 
+                    /*if (myStore.FileExists("MyFolder\\" + name + ".part"))
+                    {
+                        myStore.DeleteFile("MyFolder\\" + name + ".part");
+                    }
+                    
+                    StreamWriter part = new StreamWriter(new IsolatedStorageFileStream("MyFolder\\" + name + ".part", FileMode.CreateNew,myStore));
+                    part.WriteLine(""+isoFileStream.Length);*/
                 }
             }
 
             //update();
             GlobalVar.iscomplete = true;
             //MessageBox.Show("File Downloaded: "+name);
+        }
+
+        public void resume()
+        {
+            GlobalVar.client.Send("4" + "\n");
+            GlobalVar.client.Send(name + "\n");
+            
+            IsolatedStorageFile myStore = IsolatedStorageFile.GetUserStoreForApplication();
+
+            // Create a new folder and call it "MyFolder".
+            myStore.CreateDirectory("MyFolder");
+            using (var isoFileStream = new IsolatedStorageFileStream("MyFolder\\" + name, FileMode.OpenOrCreate, myStore))
+            {
+                GlobalVar.client.Send(""+isoFileStream.Length +"\n");
+                try
+                {
+                    string temp = GlobalVar.client.Receive();
+                    isoFileStream.Position = isoFileStream.Length;
+                    // Specify the file path and options.
+
+                    //Write the data
+                    using (var isoFileWriter = new StreamWriter(isoFileStream))
+                    {
+                        bool done = false;
+                        while (temp.CompareTo("null") != 0)
+                        {
+                            string[] all = temp.Split('\n');
+                            for (int i = 0; i < all.Length; i++)
+                            {
+                                if (all[i].CompareTo("null") != 0)
+                                {
+                                    if (all[i].CompareTo("") != 0)
+                                        isoFileStream.WriteByte(Convert.ToByte(all[i]));
+                                }
+                                else
+                                {
+                                    done = true;
+                                    break;
+                                }
+                            }
+                            if (done) break;
+
+                            temp = GlobalVar.client.Receive();
+                        }
+                    }
+                }catch(Exception e)
+                {}
+            }
         }
     };
 }

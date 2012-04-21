@@ -174,6 +174,7 @@ public void sendFile()throws IOException{
     //String toBeSend = out.readLine();
     int toBeSend = file.read();
 
+    try{
     OutputStream t_out = connection.getOutputStream();
     BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(t_out));
 
@@ -188,19 +189,59 @@ public void sendFile()throws IOException{
         }
         i++;
     }
-    out2.flush();
-    /*
-    while(toBeSend!=null){
-    	send(""+toBeSend+'\n');
-    	System.out.println("Sending String :"+toBeSend);
-    	toBeSend = out.readLine();
-    }*/
     out2.write("null\n");
     out2.flush();
-    //send("null\n");
-    file.close();
     System.out.println("file sent");
+    }
+    catch(Exception e){
+        System.out.println("file not sent : " +e.getMessage() );
+    }
+    file.close();
 }
+public void sendresume()throws IOException{
+	System.out.println("IN resume file");
+	InputStream t_inp = connection.getInputStream();
+    BufferedReader inp = new BufferedReader(new InputStreamReader(t_inp));
+    String fileName = inp.readLine();
+    int start = Integer.parseInt(inp.readLine());
+    System.out.println("Sending file :"+fileName+"from: "+ start);
+
+    FileInputStream file = new FileInputStream(new File(fileName));
+
+
+    int moved = (int)file.skip(start);
+    int left = start-moved;
+    
+    while(left>0){
+        file.read();
+        left--;
+    }
+
+    int toBeSend = file.read();
+
+    try{
+    OutputStream t_out = connection.getOutputStream();
+    BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(t_out));
+
+    int i =0;
+    while(toBeSend!=-1){
+        out2.write(""+toBeSend+'\n');
+    	toBeSend = file.read();
+        if( i%128==0){
+            out2.flush();
+        }
+        i++;
+    }
+    out2.write("null\n");
+    out2.flush();
+    System.out.println("file sent");
+    }
+    catch(Exception e){
+        System.out.println("file not sent : " +e.getMessage() );
+    }
+    file.close();
+}
+
     @Override           // TODO:all code to be written in run
     public void run(){
         System.out.println("Thread: "+this.getName()+" connected to "+
@@ -219,11 +260,15 @@ public void sendFile()throws IOException{
             while(response!=-1){
             	System.out.println("response received :"+response);
             	 switch(response){
-            	 case 0: receiveComment();break;
-            	 case 1: sendFile();break;
-            	 case 2:receiveFile();break;
+                    case 0: receiveComment();break;
+                    case 1: sendFile();break;
+                    case 2:receiveFile();break;
+                    case 3: sendresume();break;
             	 }
             	 in_data = inp.readLine();
+                 while(in_data == null){
+                     in_data = inp.readLine();
+                 }
                  System.out.println(in_data);
             	 response = Integer.parseInt(in_data);
              }
