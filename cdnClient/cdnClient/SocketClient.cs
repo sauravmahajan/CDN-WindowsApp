@@ -24,10 +24,10 @@ namespace cdnClient
 
         // Define a timeout in milliseconds for each asynchronous call. If a response is not received within this 
         // timeout period, the call is aborted.
-        const int TIMEOUT_MILLISECONDS = 500000;
+        const int TIMEOUT_MILLISECONDS = 50000;
 
         // The maximum size of the data buffer to use with the asynchronous socket methods
-        const int MAX_BUFFER_SIZE = 2048*8;
+        const int MAX_BUFFER_SIZE = 2048*1024*24;
 
         /// <summary>
         /// Attempt a TCP socket connection to the given host over the given port

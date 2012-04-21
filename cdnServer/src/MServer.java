@@ -169,23 +169,36 @@ public void sendFile()throws IOException{
     System.out.println("Sending file :"+fileName);
     //BufferedReader out = new BufferedReader( new FileReader("config/"+fileName));
     //BufferedReader out = new BufferedReader( new FileReader(fileName));
-    FileInputStream out = new FileInputStream(new File(fileName));
+    FileInputStream file = new FileInputStream(new File(fileName));
 
     //String toBeSend = out.readLine();
-    int toBeSend = out.read();
+    int toBeSend = file.read();
+
+    OutputStream t_out = connection.getOutputStream();
+    BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(t_out));
+
+    int i =0;
     while(toBeSend!=-1){
-        send(""+toBeSend+'\n');
-    //	System.out.println("Sending String :"+toBeSend);
-    	toBeSend = out.read();
+        out2.write(""+toBeSend+'\n');
+        //send(""+toBeSend+'\n');
+    	//System.out.println("Sending String :"+toBeSend);
+    	toBeSend = file.read();
+        if( i%128==0){
+            out2.flush();
+        }
+        i++;
     }
+    out2.flush();
     /*
     while(toBeSend!=null){
     	send(""+toBeSend+'\n');
     	System.out.println("Sending String :"+toBeSend);
     	toBeSend = out.readLine();
     }*/
-    send("null\n");
-    out.close();
+    out2.write("null\n");
+    out2.flush();
+    //send("null\n");
+    file.close();
     System.out.println("file sent");
 }
     @Override           // TODO:all code to be written in run
