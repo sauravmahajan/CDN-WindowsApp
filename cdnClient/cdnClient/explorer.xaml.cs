@@ -88,8 +88,9 @@ namespace cdnClient
             // Data context and observable collection are children of the main page.
             this.DataContext = this;
         }
+        
         private void deleteTaskButton_Click(object sender, RoutedEventArgs e)
-        {
+        {   
             // Cast parameter as a button.
             var button = sender as Button;
 
@@ -171,27 +172,6 @@ namespace cdnClient
                 //Write the data
                 using (var isoFileWriter = new StreamWriter(isoFileStream))
                 {
-
-                    /* bool done = false;
-                     while (temp.CompareTo("null")!=0)
-                     {
-                         string[] all = temp.Split('\n');
-                         for (int i = 0; i < all.Length; i++)
-                         {
-                             if (all[i].CompareTo("null") != 0)
-                             {
-                                 isoFileWriter.WriteLine(all[i]);
-                             }
-                             else
-                             {
-                                 done = true;
-                                 break;
-                             }
-                         }
-                         if (done) break;
-
-                         temp = GlobalVar.client.Receive();
-                     }*/
                     bool done = false;
                     while (temp.CompareTo("null") != 0)
                     {

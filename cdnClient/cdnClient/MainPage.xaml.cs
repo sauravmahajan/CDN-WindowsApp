@@ -21,6 +21,7 @@ namespace cdnClient
         public static string temp;
         public static String item;
         public static bool iscomplete;
+        public static bool doTransfer = false;
     }
     public partial class MainPage : PhoneApplicationPage
     {
