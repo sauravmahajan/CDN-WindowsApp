@@ -267,9 +267,10 @@ public void sendresume()throws IOException{
             	 }
             	 in_data = inp.readLine();
                  while(in_data == null){
+                     System.out.println(in_data);
                      in_data = inp.readLine();
                  }
-                 System.out.println(in_data);
+                 
             	 response = Integer.parseInt(in_data);
              }
             System.out.println("Terminated");

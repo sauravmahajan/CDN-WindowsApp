@@ -25,7 +25,7 @@ namespace cdnClient
             InitializeComponent();
 
             //read from config file
-            NetworksAllowed[(int)Networks.Wifi] = true;
+            NetworksAllowed[(int)Networks.Wifi] = false;
             NetworksAllowed[(int)Networks.DataConnection] = false;
             NetworksAllowed[(int)Networks.Roaming] = false;
 
@@ -63,6 +63,23 @@ namespace cdnClient
                     break;
             }
 
+        }
+
+        private void radioButton1_Checked(object sender, RoutedEventArgs e)
+        {
+            NetworksAllowed[(int)Networks.Wifi] = true;
+        }
+
+        private void radioButton2_Checked(object sender, RoutedEventArgs e)
+        {
+            
+            NetworksAllowed[(int)Networks.DataConnection] = true;
+            
+        }
+
+        private void radioButton3_Checked(object sender, RoutedEventArgs e)
+        {
+            NetworksAllowed[(int)Networks.Roaming] = true;
         }
     }
 }

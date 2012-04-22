@@ -144,7 +144,7 @@ namespace cdnClient
                 //txtRemoteHost.Text = "144.16.141.190";
                 //txtRemoteHost.Text = "10.148.0.153";
                 //txtRemoteHost.Text = "10.193.1.155";
-                txtRemoteHost.Text = "192.168.43.147";
+                txtRemoteHost.Text = "192.168.2.96";
                 return false;
             }
 

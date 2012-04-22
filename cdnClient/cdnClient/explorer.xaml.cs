@@ -341,6 +341,14 @@ namespace cdnClient
                 //txtRead.Text = "Need to create directory and the file first.";
             }
         }
+
+        private void checkStateButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var item = ((Button)sender).DataContext as ToDoItem;
+
+            String parameter = item.ItemName;//"kimi.jpg";
+            NavigationService.Navigate(new Uri(string.Format("/resume_download.xaml?parameter={0}", parameter), UriKind.Relative));
+        }
     }
     public class ToDoDataContext : DataContext
     {
@@ -487,110 +495,135 @@ namespace cdnClient
         
         public void download()
         {
-            GlobalVar.client.Send("1" + "\n");
-            GlobalVar.client.Send(name + "\n");
-            IsolatedStorageFile myStore = IsolatedStorageFile.GetUserStoreForApplication();
-
-            // Create a new folder and call it "MyFolder".
-            myStore.CreateDirectory("MyFolder");
-            using (var isoFileStream = new IsolatedStorageFileStream("MyFolder\\" + name, FileMode.OpenOrCreate, myStore))
+            if (!GlobalVar.doTransfer)
             {
-                try
+                GlobalVar.client.Send("1" + "\n");
+                GlobalVar.client.Send(name + "\n");
+                IsolatedStorageFile myStore = IsolatedStorageFile.GetUserStoreForApplication();
+
+                // Create a new folder and call it "MyFolder".
+                myStore.CreateDirectory("MyFolder");
+                using (var isoFileStream = new IsolatedStorageFileStream("MyFolder\\" + name, FileMode.OpenOrCreate, myStore))
                 {
-                    string temp = GlobalVar.client.Receive();
-                    // Specify the file path and options.
-
-                    //Write the data
-                    using (var isoFileWriter = new StreamWriter(isoFileStream))
+                    try
                     {
-                        bool done = false;
-                        while (temp.CompareTo("null") != 0)
-                        {
-                            string[] all = temp.Split('\n');
-                            for (int i = 0; i < all.Length; i++)
-                            {
-                                if (all[i].CompareTo("null") != 0)
-                                {
-                                    if (all[i].CompareTo("") != 0)
-                                        isoFileStream.WriteByte(Convert.ToByte(all[i]));
-                                }
-                                else
-                                {
-                                    done = true;
-                                    break;
-                                }
-                            }
-                            if (done) break;
+                        string temp = GlobalVar.client.Receive();
+                        // Specify the file path and options.
 
-                            temp = GlobalVar.client.Receive();
+                        //Write the data
+                        using (var isoFileWriter = new StreamWriter(isoFileStream))
+                        {
+                            bool done = false;
+                            while (temp.CompareTo("null") != 0)
+                            {
+                                string[] all = temp.Split('\n');
+                                for (int i = 0; i < all.Length; i++)
+                                {
+                                    if (all[i].CompareTo("null") != 0)
+                                    {
+                                        if (all[i].CompareTo("") != 0)
+                                            isoFileStream.WriteByte(Convert.ToByte(all[i]));
+                                    }
+                                    else
+                                    {
+                                        done = true;
+                                        break;
+                                    }
+                                }
+                                if (done) break;
+
+                                temp = GlobalVar.client.Receive();
+                            }
+
+                            GlobalVar.iscomplete = true;
+                            GlobalVar.resume = false;
                         }
                     }
-                }
-                catch(Exception e){
-                    
-                    GlobalVar.resume = true;
-
-                    // redundant code 
-                    /*if (myStore.FileExists("MyFolder\\" + name + ".part"))
+                    catch (Exception e)
                     {
-                        myStore.DeleteFile("MyFolder\\" + name + ".part");
+                        GlobalVar.resume = true;
                     }
-                    
-                    StreamWriter part = new StreamWriter(new IsolatedStorageFileStream("MyFolder\\" + name + ".part", FileMode.CreateNew,myStore));
-                    part.WriteLine(""+isoFileStream.Length);*/
                 }
+
+                //update();
+                
+                //MessageBox.Show("File Downloaded: "+name);
+            }
+            else {
+                GlobalVar.resume = true;
             }
 
-            //update();
-            GlobalVar.iscomplete = true;
-            //MessageBox.Show("File Downloaded: "+name);
         }
 
         public void resume()
         {
-            GlobalVar.client.Send("4" + "\n");
-            GlobalVar.client.Send(name + "\n");
-            
-            IsolatedStorageFile myStore = IsolatedStorageFile.GetUserStoreForApplication();
-
-            // Create a new folder and call it "MyFolder".
-            myStore.CreateDirectory("MyFolder");
-            using (var isoFileStream = new IsolatedStorageFileStream("MyFolder\\" + name, FileMode.OpenOrCreate, myStore))
+            if (!GlobalVar.doTransfer)
             {
-                GlobalVar.client.Send(""+isoFileStream.Length +"\n");
-                try
+
+                GlobalVar.client.Send("3" + "\n");
+                GlobalVar.client.Send(name + "\n");
+                IsolatedStorageFile myStore2 = IsolatedStorageFile.GetUserStoreForApplication();
+
+                // Create a new folder and call it "MyFolder".
+                myStore2.CreateDirectory("MyFolder");
+                using (var isoFileStream2 = new IsolatedStorageFileStream("MyFolder\\" + name, FileMode.OpenOrCreate, myStore2))
                 {
-                    string temp = GlobalVar.client.Receive();
-                    isoFileStream.Position = isoFileStream.Length;
-                    // Specify the file path and options.
+                    String tosendint = isoFileStream2.Length.ToString();
+                    GlobalVar.client.Send(tosendint + "\n");
+                    Thread.SpinWait(1000);
+                    Thread.Sleep(1000);
+                    isoFileStream2.Close();
+                }
+                IsolatedStorageFile myStore = IsolatedStorageFile.GetUserStoreForApplication();
 
-                    //Write the data
-                    using (var isoFileWriter = new StreamWriter(isoFileStream))
+                // Create a new folder and call it "MyFolder".
+                myStore.CreateDirectory("MyFolder");
+                using (var isoFileStream = new IsolatedStorageFileStream("MyFolder\\" + name, FileMode.OpenOrCreate, myStore))
+                {
+                    
+                    try
                     {
-                        bool done = false;
-                        while (temp.CompareTo("null") != 0)
-                        {
-                            string[] all = temp.Split('\n');
-                            for (int i = 0; i < all.Length; i++)
-                            {
-                                if (all[i].CompareTo("null") != 0)
-                                {
-                                    if (all[i].CompareTo("") != 0)
-                                        isoFileStream.WriteByte(Convert.ToByte(all[i]));
-                                }
-                                else
-                                {
-                                    done = true;
-                                    break;
-                                }
-                            }
-                            if (done) break;
+                        String wtf = "";
+                        string temp = GlobalVar.client.Receive();
+                        isoFileStream.Position = isoFileStream.Length;
+                        // Specify the file path and options.
 
-                            temp = GlobalVar.client.Receive();
+                        //Write the data
+                        using (var isoFileWriter = new StreamWriter(isoFileStream))
+                        {
+                            bool done = false;
+                            while (temp.CompareTo("null") != 0)
+                            {
+                                string[] all = temp.Split('\n');
+                                for (int i = 0; i < all.Length; i++)
+                                {
+                                    if (all[i].CompareTo("null") != 0)
+                                    {
+                                        if (all[i].CompareTo("") != 0)
+                                            isoFileStream.WriteByte(Convert.ToByte(all[i]));
+                                    }
+                                    else
+                                    {
+                                        done = true;
+                                        break;
+                                    }
+                                }
+                                if (done) break;
+
+                                temp = GlobalVar.client.Receive();
+                            }
                         }
+
+                        GlobalVar.iscomplete = true;
+                        GlobalVar.resume = false;
                     }
-                }catch(Exception e)
-                {}
+                    catch (Exception e)
+                    {
+                        String fuck = "something went very wrong";
+                    
+                    }
+
+                }
             }
         }
     };

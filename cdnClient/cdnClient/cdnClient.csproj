@@ -68,6 +68,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="configuration.xaml.cs">
+      <DependentUpon>configuration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="file_info.xaml.cs">
       <DependentUpon>file_info.xaml</DependentUpon>
     </Compile>
@@ -82,6 +85,9 @@
     </Compile>
     <Compile Include="explorer.xaml.cs">
       <DependentUpon>explorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="resume_download.xaml.cs">
+      <DependentUpon>resume_download.xaml</DependentUpon>
     </Compile>
     <Compile Include="sending.xaml.cs">
       <DependentUpon>sending.xaml</DependentUpon>
@@ -108,6 +114,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="configuration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="file_info.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="explorer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="resume_download.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
