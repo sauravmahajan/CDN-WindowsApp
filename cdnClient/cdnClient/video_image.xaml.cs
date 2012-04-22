@@ -13,7 +13,6 @@ using Microsoft.Phone.Controls;
 using System.IO;
 using System.IO.IsolatedStorage;
 using Microsoft.Phone.Tasks;
-using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace cdnClient

@@ -81,5 +81,10 @@ namespace cdnClient
         {
             NetworksAllowed[(int)Networks.Roaming] = true;
         }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/explorer.xaml", UriKind.Relative));
+        }
     }
 }

@@ -150,13 +150,7 @@ namespace cdnClient
                     {
                         // Retrieve the data from the buffer
                         response = Encoding.UTF8.GetString(e.Buffer, e.Offset, e.BytesTransferred);
-                        String responseex = response;
                         response = response.Trim('\0');
-                        if (response.Contains(responseex))
-                        {
-                            String ip = "fucked";
-                            ip = "done";
-                        }
                     }
                     else
                     {

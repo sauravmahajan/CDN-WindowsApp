@@ -1,12 +1,12 @@
-﻿<xapCache source="C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\Bin\Debug\cdnClient.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="4/22/2012 3:51:31 PM">
-  <file source="C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="4/21/2012 8:17:30 PM" />
-  <file source="C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\Background.png" archivePath="Background.png" lastWriteTime="4/21/2012 7:41:22 AM" />
-  <file source="C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="4/21/2012 7:41:22 AM" />
-  <file source="C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\obj\Debug\cdnClient.dll" archivePath="cdnClient.dll" lastWriteTime="4/22/2012 3:51:31 PM" />
-  <file source="C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\appbar.delete.rest.png" archivePath="appbar.delete.rest.png" lastWriteTime="4/21/2012 7:41:22 AM" />
-  <file source="C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\OpenFolder.png" archivePath="OpenFolder.png" lastWriteTime="4/21/2012 7:41:22 AM" />
-  <file source="C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="4/21/2012 7:41:22 AM" />
-  <file source="C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="4/21/2012 8:17:30 PM" />
-  <file source="C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\Bin\Debug\appbar.delete.rest.png" archivePath="appbar.delete.rest.png" lastWriteTime="4/21/2012 7:41:22 AM" />
-  <file source="C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\Bin\Debug\OpenFolder.png" archivePath="OpenFolder.png" lastWriteTime="4/21/2012 7:41:22 AM" />
+﻿<xapCache source="C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\Bin\Debug\cdnClient.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="4/22/2012 4:51:55 PM">
+  <file source="C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="4/22/2012 4:43:37 PM" />
+  <file source="C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\Background.png" archivePath="Background.png" lastWriteTime="4/21/2012 7:41:22 AM" />
+  <file source="C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="4/21/2012 7:41:22 AM" />
+  <file source="C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\obj\Debug\cdnClient.dll" archivePath="cdnClient.dll" lastWriteTime="4/22/2012 4:51:54 PM" />
+  <file source="C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\appbar.delete.rest.png" archivePath="appbar.delete.rest.png" lastWriteTime="4/21/2012 7:41:22 AM" />
+  <file source="C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\OpenFolder.png" archivePath="OpenFolder.png" lastWriteTime="4/21/2012 7:41:22 AM" />
+  <file source="C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="4/21/2012 7:41:22 AM" />
+  <file source="C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="4/21/2012 8:17:32 PM" />
+  <file source="C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\Bin\Debug\appbar.delete.rest.png" archivePath="appbar.delete.rest.png" lastWriteTime="4/21/2012 7:41:22 AM" />
+  <file source="C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\Bin\Debug\OpenFolder.png" archivePath="OpenFolder.png" lastWriteTime="4/21/2012 7:41:22 AM" />
 </xapCache>

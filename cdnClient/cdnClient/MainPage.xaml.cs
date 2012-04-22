@@ -22,6 +22,7 @@ namespace cdnClient
         public static String item;
         public static bool iscomplete;
         public static bool doTransfer = false;
+        [Obsolete("the variable resume is obsolete")]
         public static bool resume = false;
     }
     public partial class MainPage : PhoneApplicationPage
@@ -76,7 +77,7 @@ namespace cdnClient
                 result = GlobalVar.client.Receive();
                 if (result.CompareTo("done")==0) {
 
-                    NavigationService.Navigate(new Uri("/explorer.xaml", UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/configuration.xaml", UriKind.Relative));
                 }
                 Log(result, false);
 

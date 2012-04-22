@@ -18,22 +18,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Threading;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using Microsoft.Phone.Controls;
-using System.IO.IsolatedStorage;
 using Microsoft.Phone.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 
 namespace cdnClient
 {
@@ -495,7 +480,7 @@ namespace cdnClient
         
         public void download()
         {
-            if (!GlobalVar.doTransfer)
+            if (GlobalVar.doTransfer)
             {
                 GlobalVar.client.Send("1" + "\n");
                 GlobalVar.client.Send(name + "\n");
@@ -536,28 +521,23 @@ namespace cdnClient
                             }
 
                             GlobalVar.iscomplete = true;
-                            GlobalVar.resume = false;
+                            // deprecated variable
+                            //GlobalVar.resume = false;
                         }
                     }
                     catch (Exception e)
                     {
-                        GlobalVar.resume = true;
+                        //GlobalVar.resume = true;
                     }
                 }
 
-                //update();
-                
-                //MessageBox.Show("File Downloaded: "+name);
-            }
-            else {
-                GlobalVar.resume = true;
             }
 
         }
 
         public void resume()
         {
-            if (!GlobalVar.doTransfer)
+            if (GlobalVar.doTransfer)
             {
 
                 GlobalVar.client.Send("3" + "\n");
@@ -583,7 +563,6 @@ namespace cdnClient
                     
                     try
                     {
-                        String wtf = "";
                         string temp = GlobalVar.client.Receive();
                         isoFileStream.Position = isoFileStream.Length;
                         // Specify the file path and options.
@@ -615,11 +594,10 @@ namespace cdnClient
                         }
 
                         GlobalVar.iscomplete = true;
-                        GlobalVar.resume = false;
+                        //GlobalVar.resume = false;
                     }
                     catch (Exception e)
                     {
-                        String fuck = "something went very wrong";
                     
                     }
 

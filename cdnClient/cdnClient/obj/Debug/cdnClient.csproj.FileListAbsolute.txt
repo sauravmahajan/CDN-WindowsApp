@@ -108,3 +108,5 @@ C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClien
 C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\obj\Debug\XapCacheFile.xml
 C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\obj\Debug\configuration.g.i.cs
 C:\Users\Abhinav\Desktop\sauravmahajan-CDN-WindowsApp-a4dcb4c\cdnClient\cdnClient\obj\Debug\resume_download.g.i.cs
+C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\obj\Debug\configuration.g.i.cs
+C:\Users\saurav\CDN-WindowsApp\cdnClient\cdnClient\obj\Debug\resume_download.g.i.cs
