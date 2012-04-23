@@ -95,11 +95,20 @@ class TServer extends Thread{
         String in_data = inp.readLine();
         FileOutputStream out = new FileOutputStream(new File(in_data));
 
-        in_data = inp.readLine();
-        while (!in_data.equalsIgnoreCase("null")) {
-            out.write(Integer.parseInt(in_data));
-            System.out.println(in_data);
+        boolean done = false;
+        while (!done) {
             in_data = inp.readLine();
+            String[] all = in_data.split("\n");
+            for (int i = 0; i < all.length; i++) {
+                if (!all[i].equalsIgnoreCase("null")) {
+                    if (!all[i].equalsIgnoreCase("")) {
+                        out.write(Integer.parseInt(all[1]));
+                    }
+                } else {
+                    done = true;
+                    break;
+                }
+            }
         }
         out.close();
     }

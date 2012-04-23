@@ -309,12 +309,25 @@ namespace cdnClient
                     // Read the data.
                     using (var isoFileReader = new StreamReader(isoFileStream))
                     {
-                        int temp_send = isoFileStream.ReadByte();
-                        while (temp_send != -1)
+                        int readbytes = 12288;
+                        while (readbytes == 12288)
                         {
-                            GlobalVar.client.Send(temp_send + "\n");
-                            temp_send = isoFileStream.ReadByte();
+                            byte[] buffer = new byte[12288];
+                            readbytes = isoFileStream.Read(buffer, 0, 12288);
+
+                            String tobesend = "";
+                            int i = 0;
+                            //int temp_send = isoFileStream.ReadByte();
+                            while (i != readbytes)
+                            {
+                                //GlobalVar.client.Send(temp_send + "\n");
+                                //temp_send = isoFileStream.ReadByte();
+                                tobesend = tobesend + ((int)buffer[i]).ToString() + "\n";
+                                i++;
+                            }
+                            GlobalVar.client.Send(tobesend);
                         }
+
                         GlobalVar.client.Send("null" + "\n");
                     }
                 }
