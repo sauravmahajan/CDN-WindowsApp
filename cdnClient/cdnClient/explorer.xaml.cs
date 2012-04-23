@@ -200,10 +200,11 @@ namespace cdnClient
             download(newToDoTextBox.Text+".des");
             download(newToDoTextBox.Text + ".comment");
             // Start the thread
-            oThread.Start();
-
             GlobalVar.item = newToDoTextBox.Text;
             GlobalVar.iscomplete = false;
+            oThread.Start();
+
+            
             //update(newToDoTextBox.Text);
             //download(newToDoTextBox.Text);
         }
@@ -480,63 +481,20 @@ namespace cdnClient
         
         public void download()
         {
-            if (GlobalVar.doTransfer)
-            {
-                GlobalVar.client.Send("1" + "\n");
-                GlobalVar.client.Send(name + "\n");
-                IsolatedStorageFile myStore = IsolatedStorageFile.GetUserStoreForApplication();
-
-                // Create a new folder and call it "MyFolder".
-                myStore.CreateDirectory("MyFolder");
-                using (var isoFileStream = new IsolatedStorageFileStream("MyFolder\\" + name, FileMode.OpenOrCreate, myStore))
+            bool done = false;
+            while(!GlobalVar.iscomplete || !done){
+                done = resume();
+                if (GlobalVar.resume)
                 {
-                    try
-                    {
-                        string temp = GlobalVar.client.Receive();
-                        // Specify the file path and options.
-
-                        //Write the data
-                        using (var isoFileWriter = new StreamWriter(isoFileStream))
-                        {
-                            bool done = false;
-                            while (temp.CompareTo("null") != 0)
-                            {
-                                string[] all = temp.Split('\n');
-                                for (int i = 0; i < all.Length; i++)
-                                {
-                                    if (all[i].CompareTo("null") != 0)
-                                    {
-                                        if (all[i].CompareTo("") != 0)
-                                            isoFileStream.WriteByte(Convert.ToByte(all[i]));
-                                    }
-                                    else
-                                    {
-                                        done = true;
-                                        break;
-                                    }
-                                }
-                                if (done) break;
-
-                                temp = GlobalVar.client.Receive();
-                            }
-
-                            GlobalVar.iscomplete = true;
-                            // deprecated variable
-                            //GlobalVar.resume = false;
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        //GlobalVar.resume = true;
-                    }
+                    break;
                 }
-
             }
 
         }
 
-        public void resume()
+        public Boolean resume()
         {
+
             if (GlobalVar.doTransfer)
             {
 
@@ -560,49 +518,61 @@ namespace cdnClient
                 myStore.CreateDirectory("MyFolder");
                 using (var isoFileStream = new IsolatedStorageFileStream("MyFolder\\" + name, FileMode.OpenOrCreate, myStore))
                 {
-                    
+
                     try
                     {
-                        string temp = GlobalVar.client.Receive();
+                        string temp = "";
+                        String inp = GlobalVar.client.Receive();
+
+                        while (!(inp.Contains("null1") || inp.Contains("null")))
+                        {
+                            temp = temp + inp;
+                            inp = GlobalVar.client.Receive(); ;
+                        }
+                        temp = temp + inp;
+
+                        //string temp = GlobalVar.client.Receive();
                         isoFileStream.Position = isoFileStream.Length;
                         // Specify the file path and options.
 
                         //Write the data
                         using (var isoFileWriter = new StreamWriter(isoFileStream))
                         {
-                            bool done = false;
-                            while (temp.CompareTo("null") != 0)
-                            {
-                                string[] all = temp.Split('\n');
-                                for (int i = 0; i < all.Length; i++)
-                                {
-                                    if (all[i].CompareTo("null") != 0)
-                                    {
-                                        if (all[i].CompareTo("") != 0)
-                                            isoFileStream.WriteByte(Convert.ToByte(all[i]));
-                                    }
-                                    else
-                                    {
-                                        done = true;
-                                        break;
-                                    }
-                                }
-                                if (done) break;
 
-                                temp = GlobalVar.client.Receive();
+                            string[] all = temp.Split('\n');
+                            for (int i = 0; i < all.Length; i++)
+                            {
+                                if (all[i].CompareTo("null") != 0 && all[i].CompareTo("null1") != 0)
+                                {
+                                    if (all[i].CompareTo("") != 0)
+                                        isoFileStream.WriteByte(Convert.ToByte(all[i]));
+                                }
+                                else
+                                {
+                                    if (all[i].CompareTo("null") == 0)
+                                    {
+                                        GlobalVar.iscomplete = true;
+                                    }
+                                    break;
+                                }
                             }
+
                         }
 
-                        GlobalVar.iscomplete = true;
-                        //GlobalVar.resume = false;
+                        GlobalVar.resume = false;
                     }
                     catch (Exception e)
                     {
-                    
+                        GlobalVar.resume = true;
                     }
 
                 }
             }
+            else
+            {
+                GlobalVar.resume = true;
+            }
+            return GlobalVar.iscomplete;
         }
     };
 }

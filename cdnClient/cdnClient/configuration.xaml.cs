@@ -58,6 +58,10 @@ namespace cdnClient
                     }
                     break;
 
+                case NetworkNotificationType.InterfaceDisconnected:
+                    GlobalVar.doTransfer = false;
+                    break;
+
                default :
                     //do nothing must be other events
                     break;
@@ -84,6 +88,19 @@ namespace cdnClient
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            GlobalVar.doTransfer = false;
+            if (DeviceNetworkInformation.IsCellularDataEnabled && NetworksAllowed[(int)Networks.DataConnection])
+            {
+                GlobalVar.doTransfer = true;
+            }
+            if (DeviceNetworkInformation.IsWiFiEnabled && NetworksAllowed[(int)Networks.Wifi])
+            {
+                GlobalVar.doTransfer = true;
+            }
+            if (DeviceNetworkInformation.IsCellularDataEnabled && NetworksAllowed[(int)Networks.Roaming])
+            {
+                GlobalVar.doTransfer = true;
+            }
             NavigationService.Navigate(new Uri("/explorer.xaml", UriKind.Relative));
         }
     }

@@ -18,24 +18,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Threading;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using Microsoft.Phone.Controls;
-using System.IO;
-using System.IO.IsolatedStorage;
 using Microsoft.Phone.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-
 namespace cdnClient
 {
     public partial class file_info : PhoneApplicationPage
@@ -51,7 +34,6 @@ namespace cdnClient
 
             string newparameter = this.NavigationContext.QueryString["parameter"];
             PageTitle.Text = newparameter;
-            textBlock1.Text = newparameter;
             textRead.Text = "";
             String newparameter_des = newparameter + ".des";
             IsolatedStorageFile myStore = IsolatedStorageFile.GetUserStoreForApplication();
@@ -83,7 +65,7 @@ namespace cdnClient
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            String parameter = textBlock1.Text;
+            String parameter = PageTitle.Text;
             if (parameter.Contains(".txt"))
             {
                 NavigationService.Navigate(new Uri(string.Format("/text.xaml?parameter={0}", parameter), UriKind.Relative));
@@ -109,14 +91,14 @@ namespace cdnClient
 
         private void button2_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            String parameter = textBlock1.Text;
+            String parameter = PageTitle.Text;
             NavigationService.Navigate(new Uri(string.Format("/add_comment.xaml?parameter={0}", parameter), UriKind.Relative));
             
         }
 
         private void button3_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            String parameter = textBlock1.Text;
+            String parameter = PageTitle.Text;
             NavigationService.Navigate(new Uri(string.Format("/add_comment_new.xaml?parameter={0}", parameter), UriKind.Relative));
 
 

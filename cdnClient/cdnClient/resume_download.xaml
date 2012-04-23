@@ -27,10 +27,16 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Content="Resume" Height="72" HorizontalAlignment="Left" Margin="141,458,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" />
-            <TextBlock Height="30" HorizontalAlignment="Left" Margin="189,157,0,0" Name="textBlock1" Text="TextBlock" VerticalAlignment="Top" />
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,141">
+            <ScrollViewer>
+                <TextBlock x:Name="textRead" Text =" " TextWrapping="Wrap" />
+            </ScrollViewer>
         </Grid>
+        <Button Content="Resume" Height="72" HorizontalAlignment="Left" Margin="118,479,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" Grid.Row="1" />
+        <TextBlock Height="30" HorizontalAlignment="Left" Margin="19,551,0,0" Name="textBlock1" Text="TextBlock" VerticalAlignment="Top" Grid.Row="1" />
+        <Button Content="Comments" Grid.Row="1" Height="72" HorizontalAlignment="Right" Margin="0,480,12,0" Name="button2" VerticalAlignment="Top" Width="189" Click="button2_Click" />
+        <Button Content="Add comment" Grid.Row="1" Height="72" HorizontalAlignment="Left" Margin="113,535,0,0" Name="button3" VerticalAlignment="Top" Width="232" Click="button3_Click" />
+        <TextBlock Grid.Row="1" Height="40" HorizontalAlignment="Left" Margin="19,493,0,0" Name="textBlock2" Text="Transfer" VerticalAlignment="Top" Width="83" />
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->

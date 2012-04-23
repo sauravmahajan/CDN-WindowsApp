@@ -28,10 +28,11 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <RadioButton Content="Wi-fi" Height="72" HorizontalAlignment="Left" Margin="27,51,0,0" Name="radioButton1" VerticalAlignment="Top" Checked="radioButton1_Checked" />
-            <RadioButton Content="Data Connection" Height="72" HorizontalAlignment="Left" Margin="27,144,0,0" Name="radioButton2" VerticalAlignment="Top" Checked="radioButton2_Checked" />
-            <RadioButton Content="Data Connection (roaming)" Height="72" HorizontalAlignment="Left" Margin="27,248,0,0" Name="radioButton3" VerticalAlignment="Top" Checked="radioButton3_Checked" />
+            <CheckBox Content="Wi-fi" Height="72" HorizontalAlignment="Left" Margin="27,51,0,0" Name="radioButton1" VerticalAlignment="Top" Checked="radioButton1_Checked" />
+            <CheckBox Content="Data Connection" Height="72" HorizontalAlignment="Left" Margin="27,144,0,0" Name="radioButton2" VerticalAlignment="Top" Checked="radioButton2_Checked" />
+            <CheckBox Content="Data Connection (roaming)" Height="72" HorizontalAlignment="Left" Margin="27,248,0,0" Name="radioButton3" VerticalAlignment="Top" Checked="radioButton3_Checked" />
             <Button Content="Submit" Height="72" HorizontalAlignment="Left" Margin="134,407,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" />
+            
         </Grid>
     </Grid>
  

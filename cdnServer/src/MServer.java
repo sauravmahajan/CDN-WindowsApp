@@ -62,26 +62,8 @@ public class MServer {
         }
     }
     public static void main(String [] args) throws IOException{
-        
-    	/*try{
-    		FileInputStream configFile =new FileInputStream(new File("config/MServer.cfg"));
-    		new AppConfig();
-    		AppConfig.load(configFile);
-    		configFile.close();
-    	}
-    	catch(IOException e){
-    		System.out.println("Config file reading in MServer failed");
-    		return;
-    	}*/
-		
-		
-    	//int port = Integer.parseInt(AppConfig.getProperty("MServer.Port"));
+   
         int port =5010;
-        //TODO:read from config file
-        /*if (args.length>=1)
-        {
-            port = Integer.parseInt(args[0]);
-        }*/
         MServer myServer = new MServer(port);
         myServer.start();
     }
@@ -114,8 +96,6 @@ class TServer extends Thread{
         FileOutputStream out = new FileOutputStream(new File(in_data));
 
         in_data = inp.readLine();
-        //out.close();
-        //in_data = inp.readLine();
         while (!in_data.equalsIgnoreCase("null")) {
             out.write(Integer.parseInt(in_data));
             System.out.println(in_data);
@@ -185,7 +165,7 @@ public void sendFile()throws IOException{
     	//System.out.println("Sending String :"+toBeSend);
     	toBeSend = file.read();
         if( i%128==0){
-            out2.flush();
+            //out2.flush();
         }
         i++;
     }
@@ -227,12 +207,14 @@ public void sendresume()throws IOException{
     while(toBeSend!=-1){
         out2.write(""+toBeSend+'\n');
     	toBeSend = file.read();
-        if( i%128==0){
-            out2.flush();
+        if( i==524288){
+            break;
         }
         i++;
     }
-    out2.write("null\n");
+    if(toBeSend ==-1){
+    out2.write("null\n");}
+    else{out2.write("null1\n");}
     out2.flush();
     System.out.println("file sent");
     }
