@@ -65,6 +65,10 @@ namespace cdnClient
             // Dispose of camera and media objects.
             DisposeVideoPlayer();
             DisposeVideoRecorder();
+            ToDoItem newToDo = new ToDoItem { ItemName = isoVideoFileName };
+            newToDo.IsComplete = true;
+            explorer.toDoDB.ToDoItems.InsertOnSubmit(newToDo);
+            explorer.toDoDB.SubmitChanges();
 
             base.OnNavigatedFrom(e);
         }
