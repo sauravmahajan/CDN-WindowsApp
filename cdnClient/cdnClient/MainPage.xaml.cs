@@ -24,6 +24,8 @@ namespace cdnClient
         public static bool doTransfer = false;
         [Obsolete("the variable resume is obsolete")]
         public static bool resume = false;
+        public static string address;
+        public static int port;
     }
     public partial class MainPage : PhoneApplicationPage
     {
@@ -55,6 +57,8 @@ namespace cdnClient
                 // Attempt to connect to the echo server
                 Log(String.Format("Connecting to server '{0}' over port {1} ...", txtRemoteHost.Text, Convert.ToInt32(txtPortNo.Text)), true);
                 string result = GlobalVar.client.Connect(txtRemoteHost.Text,Convert.ToInt32(txtPortNo.Text));
+                GlobalVar.port = Convert.ToInt32(txtPortNo.Text);
+                GlobalVar.address = txtRemoteHost.Text;
                 Log(result, false);
                 //GlobalVar.client = client;
                 // Attempt to send our message to be echoed to the echo server

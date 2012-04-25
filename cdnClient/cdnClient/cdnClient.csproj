@@ -86,6 +86,9 @@
     <Compile Include="explorer.xaml.cs">
       <DependentUpon>explorer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="recorded_video_name.xaml.cs">
+      <DependentUpon>recorded_video_name.xaml</DependentUpon>
+    </Compile>
     <Compile Include="resume_download.xaml.cs">
       <DependentUpon>resume_download.xaml</DependentUpon>
     </Compile>
@@ -99,6 +102,12 @@
     </Compile>
     <Compile Include="video_image.xaml.cs">
       <DependentUpon>video_image.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="video_play.xaml.cs">
+      <DependentUpon>video_play.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="video_record.xaml.cs">
+      <DependentUpon>video_record.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +147,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="recorded_video_name.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="resume_download.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +164,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="video_image.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="video_play.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="video_record.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,11 +191,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Background.png" />
+    <Content Include="icons\appbar.feature.video.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\appbar.stop.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\appbar.transport.pause.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\appbar.transport.play.rest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="OpenFolder.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

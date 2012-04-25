@@ -146,13 +146,11 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="325*" />
                 </Grid.ColumnDefinitions>
-                <Button 
-                    Content="refresh" x:Name="refresh"
-                    Click="refresh_Click" Margin="164,0,161,0" Grid.Column="1" />
+                <TextBox FontSize="{StaticResource PhoneFontSizeNormal}" Height="70" HorizontalAlignment="Left" Margin="0,-4,0,0" Name="RemoteUpload" VerticalAlignment="Top" Width="292" Grid.Column="1" />
+                <Button Content="Upload" Height="72" HorizontalAlignment="Right" Margin="0,-8,0,0" Name="button3" VerticalAlignment="Top" Width="164" Click="button3_Click" Grid.Column="1" />
             </Grid>
-            <Button Content="Upload" Height="72" HorizontalAlignment="Left" Margin="292,74,0,0" Name="button3" VerticalAlignment="Top" Width="158" Grid.Row="6" Click="button3_Click" />
-            <TextBox FontSize="{StaticResource PhoneFontSizeNormal}" Height="70" HorizontalAlignment="Left" Margin="9,74,0,0" Name="RemoteUpload" VerticalAlignment="Top" Width="277" Grid.Row="6" />
-                
+            <Button Content="refresh" x:Name="refresh" Click="refresh_Click" Margin="44,30,281,42" Grid.Row="6" />
+            <Button Content="Capture" Grid.Row="6" Height="72" HorizontalAlignment="Left" Margin="217,30,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" />
         </Grid>
         
     </Grid>

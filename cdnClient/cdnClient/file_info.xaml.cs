@@ -23,6 +23,7 @@ namespace cdnClient
 {
     public partial class file_info : PhoneApplicationPage
     {
+        //MediaPlayerLauncher mediaPlayerLauncher = new MediaPlayerLauncher();
         public file_info()
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace cdnClient
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            GlobalVar.client.Connect(GlobalVar.address,GlobalVar.port);
 
             string newparameter = this.NavigationContext.QueryString["parameter"];
             PageTitle.Text = newparameter;
@@ -74,13 +76,15 @@ namespace cdnClient
             {
                 if (parameter.Contains(".wmv"))
                 {
+                    //NavigationService.Navigate(new Uri(string.Format("/video_play.xaml?parameter={0}", parameter), UriKind.Relative));
                     MediaPlayerLauncher mediaPlayerLauncher = new MediaPlayerLauncher();
                     mediaPlayerLauncher.Media = new Uri("MyFolder\\" + parameter, UriKind.Relative);
                     //replace "gags" with your file path.
                     mediaPlayerLauncher.Location = MediaLocationType.Data;
-                    mediaPlayerLauncher.Controls = MediaPlaybackControls.Pause | MediaPlaybackControls.Stop | MediaPlaybackControls.All;
+                    mediaPlayerLauncher.Controls = MediaPlaybackControls.All;
                     mediaPlayerLauncher.Orientation = MediaPlayerOrientation.Landscape;
                     mediaPlayerLauncher.Show();
+                    
                 }
                 else
                 {

@@ -102,7 +102,7 @@ class TServer extends Thread{
             for (int i = 0; i < all.length; i++) {
                 if (!all[i].equalsIgnoreCase("null")) {
                     if (!all[i].equalsIgnoreCase("")) {
-                        out.write(Integer.parseInt(all[1]));
+                        out.write(Integer.parseInt(all[i]));
                     }
                 } else {
                     done = true;
@@ -257,11 +257,7 @@ public void sendresume()throws IOException{
                     case 3: sendresume();break;
             	 }
             	 in_data = inp.readLine();
-                 while(in_data == null){
-                     System.out.println(in_data);
-                     in_data = inp.readLine();
-                 }
-                 
+                    System.out.println(in_data);
             	 response = Integer.parseInt(in_data);
              }
             System.out.println("Terminated");

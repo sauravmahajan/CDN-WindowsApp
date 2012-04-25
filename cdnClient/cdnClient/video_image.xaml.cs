@@ -36,7 +36,7 @@ namespace cdnClient
                 objMPlayerLauncher.Media = new Uri("MyFolder\\" + newparameter, UriKind.Relative);
                 //replace "gags" with your file path.
                 objMPlayerLauncher.Location = MediaLocationType.Data;
-                objMPlayerLauncher.Controls = MediaPlaybackControls.Pause | MediaPlaybackControls.Stop;
+                objMPlayerLauncher.Controls = MediaPlaybackControls.All;
                 objMPlayerLauncher.Show();
             }
             else

@@ -348,6 +348,11 @@ namespace cdnClient
             String parameter = item.ItemName;//"kimi.jpg";
             NavigationService.Navigate(new Uri(string.Format("/resume_download.xaml?parameter={0}", parameter), UriKind.Relative));
         }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri(string.Format("/recorded_video_name.xaml"), UriKind.Relative));
+        }
     }
     public class ToDoDataContext : DataContext
     {
